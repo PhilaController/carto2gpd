@@ -34,10 +34,10 @@ def get(url, table_name, fields=None, where=None, limit=None):
     
     Example
     -------
-    >>> import carto2sf
+    >>> import carto2gpd
     >>> url = "https://phl.carto.com/api/v2/sql"
     >>> where = "date_ > current_date - 30"
-    >>> gdf = carto2sf.get(url, "shootings", fields=['age', 'fatal'], where=where, limit=5)
+    >>> gdf = carto2gpd.get(url, "shootings", fields=['age', 'fatal'], where=where, limit=5)
     >>> gdf
     """
     if fields is None:

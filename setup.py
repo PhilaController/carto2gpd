@@ -13,8 +13,8 @@ def find_version(path):
 
 
 setup(
-    name="carto2sf",
-    version=find_version("carto2sf/__init__.py"),
+    name="carto2gpd",
+    version=find_version("carto2gpd/__init__.py"),
     author="Nick Hand",
     maintainer="Nick Hand",
     maintainer_email="nick.hand@phila.gov",
