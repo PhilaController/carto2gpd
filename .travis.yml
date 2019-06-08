@@ -8,6 +8,10 @@ notifications:
   email:
     - nick.hand@phila.gov
 
+env:
+  global:
+    - secure: "NwECQbVV0OfPPZGE9eXPGaRwnF/WLL09EKqkMTsOsvIuKhizVaXg7PHHmcrD+cIKyftFJGfNYHL1Ea4RD88HFc4NmZqIfuPwtnzb9Gmr2g2MNpmS0GJKhqjytWlVTcM9JIz2NmQFX6HHW98cCcDp/v/obx9he0GjNAkzIdWHwyeet/5wvhHfNBDRV/cEFWQyNRgFPkq5ARbLC2+FU4u7O8HATBXdglgo98P2iDJI9n+1YUNoijcUNI+F6OKCepqzdf1Ir0559o3+mjfHgiEBLLlf/ozdFux/HWftXE7I5EikBKvotg+AtoWFmV6YFjXWKVTeLkJTFxSStVru84Wksird0tyFpqlE67xXDj/zxbzmqBp34zV6xPsqyb6TtdSG1G9x9ulMn/7mnUKvJ0B+c2x6HiMz4st3gJ9SXXwYZQI56d0VtACWtRDBAtoehIpuOnVsrSm/pOLRgWj4lnzpGSb6s+tjgTHgkGUqjN4ZBVGV6v4EvuzX8GPXQVY/16gXrunKH5aVMKvT+Q0aU8PLqc5WEyCqXzNUxTdzsGvTINdafO61F2MvF0jpiJzlMaAvXLlLX4WjR9x5kiVBjLBKMidY70J41PVmY/3lnUJGYdGt39kxgqmzNGn7LwP0tmMamCadFXg5HIkGa8Jatkybs1nZzmHCQTjvoGJZCj/MWbo="
+
 cache:
   directories:
     - $HOME/.cache/pip
@@ -35,3 +39,22 @@ script:
 
 after_success:
   - coveralls
+  - conda build conda-recipe
+  - chmod +x ./deploy_anaconda.sh
+
+deploy:
+  # Deploy to PyPi
+  - provider: pypi
+    distributions: sdist
+    user: "controllerphl"
+    password:
+      secure: "hAMjyWWS+Xmw64jYH2ENpBVJQa5LQtVJsqN1EFBhnMd4KSlpgAxQh9K7k3RHp4ODR/yX7p4tE7wH9PVA6RdZIDmIxgXYIgdJ2U8FYv2mWh7J5u+RTA8Lmi+jA1VKSdBzHxW/lx2Hh5QONNBqOB5Ww20KxMW05CcjZpAM9d/gPd8T9vz1VyqI90ZF0D5zFZ2eWEHuTc0oEe1X0BlEgAIY3RHMNDOIJ4wPt9J59KLOfRpIX7d3/pAYNa8f5ymyaYVRnWOPG6a9eCGBnkvZUy2xOXmOkGrUubX8ha22B/uFxJHWfEQdqzJ/BlbJiWtiq5MY/FkQzynnDm8uu8F95ATDBJl7eF9T4mmcV7RYVyAVm6y4cwE/qsazJoVJd1cofvQB/yun1Zw4KFmGCVKIXqt4jdZgzpAnGRJK1ihayZtlBB100SLbm6lWK0T9zudz0ZSJ4s1W1AcRdg878SCobDy/2vmPfjdggnfCyKqdxBvSfJMGR9xV5rjLzwwynrE3MUtJNV9OD2aRux2J63cDWcXVuTcMHHkSlMsUs25zZ352/stGztxCvvWkxg0g6nWaX7dCrwAbZ20aLBQfXLbBYAEZCE/++ws9+X4uwk3/eEqFlvn1o1pYw43vUs978/S1fktRAqaWrI5oyuSDSe1KWJ70c"
+    on:
+      tags: true
+      condition: $TRAVIS_PYTHON_VERSION = "3.7"
+  # Deploy to Anaconda.org
+  - provider: script
+    script: ./deploy_anaconda.sh
+    on:
+      tags: true
+    skip_cleanup: true
