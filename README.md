@@ -1,5 +1,7 @@
 # carto2gpd
 
+[![Coverage Status](https://coveralls.io/repos/github/PhiladelphiaController/carto2gpd/badge.svg?branch=master)](https://coveralls.io/github/PhiladelphiaController/carto2gpd?branch=master)
+
 A Python utility to query a CARTO database and return a geopandas GeoDataFrame.
 
 # Example
