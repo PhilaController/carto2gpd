@@ -27,6 +27,7 @@ script:
   - py.test . --cov carto2gpd
 after_success:
   - coveralls
+  - chmod +x deploy_anaconda.sh
 deploy:
   - provider: pypi
     distributions: sdist
