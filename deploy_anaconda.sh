@@ -3,7 +3,7 @@
 set -e
 
 echo "Building conda recipe..."
-conda build conda-recipe
+conda build --variants "{python: [3.6, 3.7]}" conda-recipe
 
 echo "Converting conda package..."
 conda convert --platform all $HOME/miniconda/conda-bld/linux-64/carto2gpd-*.tar.bz2 --output-dir conda-bld/
