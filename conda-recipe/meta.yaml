@@ -26,9 +26,6 @@ requirements:
     - requests
     - geopandas
 
-test:
-  imports:
-    - carto2gpd
 
 about:
   home: https://github.com/PhiladelphiaController/carto2gpd
