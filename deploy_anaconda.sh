@@ -2,6 +2,9 @@
 
 set -e
 
+echo "Building conda recipe..."
+conda build conda-recipe
+
 echo "Converting conda package..."
 conda convert --platform all $HOME/miniconda/conda-bld/linux-64/PACKAGENAME-*.tar.bz2 --output-dir conda-bld/
 
