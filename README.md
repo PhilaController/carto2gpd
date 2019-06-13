@@ -9,7 +9,21 @@
 
 A Python utility to query a CARTO database and return a geopandas GeoDataFrame.
 
-# Example
+## Installation
+
+Via conda: 
+
+```
+conda install -c controllerphl carto2gpd
+```
+
+Via PyPi:
+
+```
+pip install carto2gpd
+```
+
+## Example
 
 ```python
 import carto2gpd
