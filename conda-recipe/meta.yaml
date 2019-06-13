@@ -26,15 +26,15 @@ requirements:
     - requests
     - geopandas
 
+test:
+  imports:
+    - carto2gpd
 
 about:
   home: https://github.com/PhiladelphiaController/carto2gpd
   license: MIT
   license_family: MIT
-  license_file: 
   summary: A Python utility to query a CARTO database and return a geopandas GeoDataFrame
-  doc_url: 
-  dev_url: 
 
 extra:
   recipe-maintainers:
