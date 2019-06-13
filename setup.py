@@ -23,6 +23,7 @@ setup(
     author="Nick Hand",
     maintainer="Nick Hand",
     maintainer_email="nick.hand@phila.gov",
+    packages=["carto2gpd"],
     description="A Python utility to query a CARTO database and return a geopandas GeoDataFrame",
     license="MIT",
     python_requires=">=3.6",
