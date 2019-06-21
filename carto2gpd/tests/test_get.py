@@ -1,5 +1,6 @@
 import carto2gpd
 import pytest
+import pandas as pd
 
 
 def test_limit():
@@ -33,3 +34,9 @@ def test_bad_where():
     where = "bad_column > 0"
     with pytest.raises(ValueError):
         gdf = carto2gpd.get(url, "shootings", where=where, limit=5)
+
+
+def test_no_geometry():
+    url = "https://phl.carto.com/api/v2/sql"
+    df = carto2gpd.get(url, "li_com_act_licenses", limit=5)
+    assert isinstance(df, pd.DataFrame)
