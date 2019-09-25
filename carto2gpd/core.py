@@ -10,9 +10,50 @@ def _get_json_safely(response):
     """
     json = response.json()  # get the JSON
     if "error" in json:
-        raise ValueError("Error: %s" % json["error"][0])
+        raise ValueError(json["error"][0])
 
     return json
+
+
+def get_size(url, table_name, where=None):
+    """
+    Query a CARTO database API and return the total number 
+    of rows in the database.
+
+    Parameters
+    ----------
+    url : str
+        the URL for the database API
+    table_name : str
+        the name of the database table to query
+    where : str, optional
+        the where clause to select a subset of the data
+    
+    Returns
+    -------
+    size : int
+        the number of rows in the database
+    
+    Example
+    -------
+    >>> import carto2gpd
+    >>> url = "https://phl.carto.com/api/v2/sql"
+    >>> size = carto2gpd.get_size(url, "shootings")
+    >>> size
+    """
+    # make the SQL query
+    query = f"SELECT COUNT(*) FROM {table_name}"
+
+    # Add a where clause
+    if where:
+        query += f" WHERE {where}"
+
+    # get the response
+    params = dict(q=query)
+    r = requests.get(url, params=params)
+    json = _get_json_safely(r)
+
+    return json["rows"][0]["count"]
 
 
 def get(url, table_name, fields=None, where=None, limit=None):
