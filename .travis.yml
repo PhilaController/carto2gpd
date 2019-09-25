@@ -20,8 +20,8 @@ before_install:
   - export PATH=$HOME/miniconda/bin:$PATH
   - conda config --set auto_update_conda False
 install:
-  - conda install --yes python=$TRAVIS_PYTHON_VERSION conda-build "conda<4.7" jinja2 anaconda-client
-  - conda install --yes geopandas requests
+  - conda install --yes python=$TRAVIS_PYTHON_VERSION conda-build=3.17.8 "conda<4.7" jinja2 anaconda-client
+  - conda install --yes -c conda-forge --file requirements.txt
   - conda info
   - pip install .[dev]
 script:
