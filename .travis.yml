@@ -18,8 +18,7 @@ before_install:
   - chmod +x miniconda.sh
   - "./miniconda.sh -b -p $HOME/miniconda"
   - export PATH=$HOME/miniconda/bin:$PATH
-  - echo "conda ==4.7.11" >> $HOME/miniconda/conda-meta/pinned
-  - echo "conda-build ==3.18.7" >> $HOME/miniconda/conda-meta/pinned
+  - conda config --set auto_update_conda False
 install:
   - conda install --yes python=$TRAVIS_PYTHON_VERSION conda-build=3.18.7 conda=4.7.11 jinja2 anaconda-client
   - conda install --yes --file requirements.txt
