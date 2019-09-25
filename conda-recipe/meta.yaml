@@ -20,11 +20,13 @@ requirements:
     - python
     - requests
     - geopandas
+    - munch
 
   run:
     - python
     - requests
     - geopandas
+    - munch
 
 test:
   imports:
