@@ -21,7 +21,7 @@ before_install:
   - conda config --set auto_update_conda False
 install:
   - conda install --yes python=$TRAVIS_PYTHON_VERSION conda-build "conda<4.7" jinja2 anaconda-client
-  - conda install --yes --file requirements.txt
+  - conda install --yes geopandas requests
   - conda info
   - pip install .[dev]
 script:
