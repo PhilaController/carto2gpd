@@ -1,4 +1,5 @@
 import requests
+import urllib
 import geopandas as gpd
 import pandas as pd
 
@@ -50,7 +51,11 @@ def get_size(url, table_name, where=None):
 
     # get the response
     params = dict(q=query)
-    r = requests.get(url, params=params)
+    r = requests.get(
+        url,
+        params=urllib.parse.urlencode(params, quote_via=urllib.parse.quote),
+        headers={"Content-Type": "application/json;charset=UTF-8"},
+    )
     json = _get_json_safely(r)
 
     return json["rows"][0]["count"]
@@ -98,7 +103,11 @@ def get(url, table_name, fields=None, where=None, limit=None):
 
     # get the response
     params = dict(q=query, format="geojson", skipfields=["cartodb_id"])
-    r = requests.get(url, params=params)
+    r = requests.get(
+        url,
+        params=urllib.parse.urlencode(params, quote_via=urllib.parse.quote),
+        headers={"Content-Type": "application/json;charset=UTF-8"},
+    )
     json = _get_json_safely(r)
 
     # convert to a GeoDataFrame
