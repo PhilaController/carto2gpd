@@ -1,7 +1,8 @@
-import requests
 import urllib
+
 import geopandas as gpd
 import pandas as pd
+import requests
 
 
 def _get_json_safely(response):
@@ -111,7 +112,10 @@ def get(url, table_name, fields=None, where=None, limit=None):
     json = _get_json_safely(r)
 
     # convert to a GeoDataFrame
-    out = gpd.GeoDataFrame.from_features(json, crs={"init": "epsg:4326"})
+    if gpd.__version__ >= "0.7":
+        out = gpd.GeoDataFrame.from_features(json, crs="EPSG:4326")
+    else:
+        out = gpd.GeoDataFrame.from_features(json, crs={"init": "epsg:4326"})
 
     # check if we have any geometry values
     no_geometry = out.geometry.isnull().all()
@@ -119,4 +123,3 @@ def get(url, table_name, fields=None, where=None, limit=None):
         out = pd.DataFrame(out.drop(labels=["geometry"], axis=1))
 
     return out
-
