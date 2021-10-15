@@ -1,6 +1,6 @@
 # carto2gpd
 
-[![Build Status](https://travis-ci.org/PhiladelphiaController/carto2gpd.svg?branch=master)](https://travis-ci.org/PhiladelphiaController/carto2gpd)
+
 [![Coverage Status](https://coveralls.io/repos/github/PhiladelphiaController/carto2gpd/badge.svg?branch=master)](https://coveralls.io/github/PhiladelphiaController/carto2gpd?branch=master)
 [![](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/download/releases/3.6.0/)
 ![t](https://img.shields.io/badge/status-stable-green.svg)
