@@ -61,5 +61,5 @@ jobs:
       - name: Upload to Anaconda
         env:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-          PYTHON_VERSIONS: "[3.8, 3.9]"
+          PYTHON_VERSIONS: "[3.8]"
         run: bash deploy_anaconda.sh
