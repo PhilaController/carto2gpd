@@ -2,8 +2,8 @@ name: Deploy
 
 on:
   push:
-    tags:
-      - "*"
+    # tags:
+    #   - "*"
 
 jobs:
   test:
@@ -28,6 +28,7 @@ jobs:
       - name: Run tests
         run: poetry run py.test . --cov carto2gpd
       - name: Coveralls
+        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: poetry run coveralls
 
   upload-pypi:
