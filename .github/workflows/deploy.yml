@@ -71,4 +71,8 @@ jobs:
           LATEST_VERSION: ${{ env.version }}
         run: bash conda-build.sh
       - name: Upload to Anaconda
-        run: anaconda -t  ${{ secrets.ANACONDA_TOKEN }} upload --skip-existing conda-bld/**/carto2gpd-*.tar.bz2
+        shell: bash -l {0}
+        run: |
+          conda info
+          which anaconda
+          anaconda -t  ${{ secrets.ANACONDA_TOKEN }} upload --skip-existing conda-bld/**/carto2gpd-*.tar.bz2
