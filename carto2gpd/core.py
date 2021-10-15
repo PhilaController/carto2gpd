@@ -3,11 +3,14 @@ import urllib
 import geopandas as gpd
 import pandas as pd
 import requests
+from pkg_resources import packaging
+
+GEOPANDAS_VERSION = packaging.version.parse(gpd.__version__)
 
 
 def _get_json_safely(response):
     """
-    Check for JSON response errors, and if all clear, 
+    Check for JSON response errors, and if all clear,
     return the JSON data
     """
     json = response.json()  # get the JSON
@@ -19,7 +22,7 @@ def _get_json_safely(response):
 
 def get_size(url, table_name, where=None):
     """
-    Query a CARTO database API and return the total number 
+    Query a CARTO database API and return the total number
     of rows in the database.
 
     Parameters
@@ -30,12 +33,12 @@ def get_size(url, table_name, where=None):
         the name of the database table to query
     where : str, optional
         the where clause to select a subset of the data
-    
+
     Returns
     -------
     size : int
         the number of rows in the database
-    
+
     Example
     -------
     >>> import carto2gpd
@@ -79,7 +82,7 @@ def get(url, table_name, fields=None, where=None, limit=None):
         the where clause to select a subset of the data
     limit : int, optional
         limit the returned data to this many features
-    
+
     Example
     -------
     >>> import carto2gpd
@@ -112,7 +115,7 @@ def get(url, table_name, fields=None, where=None, limit=None):
     json = _get_json_safely(r)
 
     # convert to a GeoDataFrame
-    if gpd.__version__ >= "0.7":
+    if GEOPANDAS_VERSION >= packaging.version.parse("0.7"):
         out = gpd.GeoDataFrame.from_features(json, crs="EPSG:4326")
     else:
         out = gpd.GeoDataFrame.from_features(json, crs={"init": "epsg:4326"})
