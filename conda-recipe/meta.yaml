@@ -16,6 +16,8 @@ build:
   script : pip install .
 
 requirements:
+  build:
+    - poetry
   host:
     - python
     - requests
