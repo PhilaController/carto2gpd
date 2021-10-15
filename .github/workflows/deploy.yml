@@ -57,7 +57,7 @@ jobs:
           auto-update-conda: true
           python-version: 3.8
       - name: Setup Anaconda Client
-        run: conda install --yes anaconda-client conda-build
+        run: conda install --yes anaconda-client conda-build poetry
       - name: Get latest version
         run: echo "version=$(git describe --abbrev=0 --tags)" >> $GITHUB_ENV
       - name: Upload to Anaconda

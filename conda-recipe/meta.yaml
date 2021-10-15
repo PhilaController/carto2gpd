@@ -13,7 +13,7 @@ build:
   script_env: 
     - TRAVIS_TAG
   number: 0
-  script : python setup.py install
+  script : poetry install
 
 requirements:
   host:
