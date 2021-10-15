@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "carto2gpd"
-version = "1.0.7"
+version = "1.0.8"
 description = "A Python utility to query a CARTO database and return a geopandas GeoDataFrame"
 authors = ["Nick Hand <nick.hand@phila.gov>"]
 license = "MIT"
