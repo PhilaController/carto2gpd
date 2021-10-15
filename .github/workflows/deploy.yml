@@ -1,11 +1,9 @@
 name: Upload
 
 on:
-  push:
-    tags:
-      - "*"
-    paths:
-      - .github/workflows/deploy.yml
+  push
+  # - tags:
+  #   - "*"
 
 jobs:
   test:
