@@ -2,6 +2,9 @@
 
 set -e
 
+echo "Add setup.py file..."
+echo "import setuptools; setuptools.setup()" >> setup.py
+
 echo "Building conda recipe..."
 conda build --variants "{python: $PYTHON_VERSIONS}" conda-recipe
 

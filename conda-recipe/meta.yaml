@@ -13,7 +13,7 @@ build:
   script_env: 
     - LATEST_VERSION
   number: 0
-  script : cat "import setuptools; setuptools.setup()" > setup.py; python setup.py install
+  script : pip install .
 
 requirements:
   host:
