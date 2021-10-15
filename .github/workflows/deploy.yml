@@ -65,9 +65,10 @@ jobs:
         run: conda install --yes anaconda-client conda-build poetry
       - name: Set latest version
         run: echo "version=${{ steps.previoustag.outputs.tag }}" >> $GITHUB_ENV
-      - name: Upload to Anaconda
+      - name: Conda build
         env:
-          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
           PYTHON_VERSIONS: "[3.8]"
           LATEST_VERSION: ${{ env.version }}
-        run: bash deploy_anaconda.sh
+        run: bash conda-build.sh
+      - name: Upload to Anaconda
+        run: anaconda -t  ${{ secrets.ANACONDA_TOKEN }} upload --skip-existing conda-bld/**/carto2gpd-*.tar.bz2
