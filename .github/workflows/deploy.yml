@@ -58,8 +58,11 @@ jobs:
           python-version: 3.8
       - name: Setup Anaconda Client
         run: conda install --yes anaconda-client conda-build
+      - name: Get latest version
+        run: echo "version=$(git describe --abbrev=0 --tags)" >> $GITHUB_ENV
       - name: Upload to Anaconda
         env:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
           PYTHON_VERSIONS: "[3.8]"
+          LATEST_VERSION: ${{ env.version }}
         run: bash deploy_anaconda.sh

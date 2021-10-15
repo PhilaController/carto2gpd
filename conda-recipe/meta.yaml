@@ -1,4 +1,5 @@
 {% set name = "carto2gpd" %}
+{% set version = environ.get("LATEST_VERSION", "") %}
 
 package:
   name: "{{ name|lower }}"
@@ -9,6 +10,8 @@ source:
   git_rev: {{ version }}
 
 build:
+  script_env: 
+    - TRAVIS_TAG
   number: 0
   script : python setup.py install
 
