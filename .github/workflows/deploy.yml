@@ -56,10 +56,13 @@ jobs:
         with:
           auto-update-conda: true
           python-version: 3.8
+      - name: Get previous tag
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
       - name: Setup Anaconda Client
         run: conda install --yes anaconda-client conda-build poetry
-      - name: Get latest version
-        run: echo "version=$(git describe --abbrev=0 --tags)" >> $GITHUB_ENV
+      - name: Set latest version
+        run: echo "version=${{ steps.previoustag.outputs.tag }}" >> $GITHUB_ENV
       - name: Upload to Anaconda
         env:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
