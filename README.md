@@ -2,7 +2,7 @@
 
 
 [![Coverage Status](https://coveralls.io/repos/github/PhiladelphiaController/carto2gpd/badge.svg?branch=master)](https://coveralls.io/github/PhiladelphiaController/carto2gpd?branch=master)
-[![](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/download/releases/3.8.0/)
+[![](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/download/releases/3.7.0/)
 ![t](https://img.shields.io/badge/status-stable-green.svg)
 [![](https://img.shields.io/github/license/PhiladelphiaController/carto2gpd.svg)](https://github.com/PhiladelphiaController/carto2gpd/blob/master/LICENSE)
 [![PyPi version](https://img.shields.io/pypi/v/carto2gpd.svg)](https://pypi.python.org/pypi/carto2gpd/)
